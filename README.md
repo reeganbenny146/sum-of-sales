@@ -1,77 +1,69 @@
-# Sales Dashboard
+# Sales Summary Dashboard
 
-This is a simple, single-page web application designed to fetch sales data from a `data.csv` file, calculate the total sales, and display it on a responsive dashboard.
+This project provides a simple web-based dashboard to visualize product sales data. It allows users to view total sales per product, convert sales figures to different currencies, and filter sales by region.
 
 ## Features
 
-*   **Data Fetching:** Automatically fetches `data.csv` from the project root.
-*   **Sales Aggregation:** Parses the CSV and sums values from the 'sales' column.
-*   **Responsive Design:** Built with Tailwind CSS to ensure a great user experience on all devices.
-*   **Error Handling:** Provides user-friendly messages if the data cannot be loaded or processed.
+- **Product Sales Listing**: Displays a table of each product with its aggregated total sales.
+- **Currency Conversion**: Select from various currencies to view sales totals in your desired denomination. Exchange rates are sourced from `rates.json`.
+- **Region Filtering**: Filter the sales data to see totals for specific geographic regions.
+- **Responsive Design**: Built with Tailwind CSS for a modern, mobile-friendly interface.
 
 ## Project Structure
 
-```
-./
-├── index.html
-├── data.csv
-└── README.md
-└── LICENSE
-```
+- `index.html`: The main HTML file containing the dashboard layout, styling (Tailwind CSS), and all application logic (JavaScript).
+- `data.csv`: A CSV file containing raw sales transaction data. It's expected to have columns like `Product`, `Region`, and `SalesAmount`.
+- `rates.json`: A JSON file providing exchange rates for different currencies, relative to a base currency (e.g., USD).
+- `README.md`: This file, providing an overview of the project.
+- `LICENSE`: The MIT License for this project.
 
-## `data.csv` Format
+## How to Run
 
-The application expects a CSV file named `data.csv` located in the same directory as `index.html`. The CSV *must* include a header row, and one of the headers *must* be `sales` (case-insensitive).
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd sales-summary-dashboard
+    ```
+2.  **Ensure data files are present:** Make sure `data.csv` and `rates.json` are in the project root directory.
+3.  **Open `index.html`:** Simply open the `index.html` file in your web browser. There is no server-side component required.
 
-**Example `data.csv`:**
+## Data Formats
+
+### `data.csv`
+
+Expected format for `data.csv` (example):
 
 ```csv
-product,sales,region
-Laptop,1200.50,North
-Mouse,25,North
-Keyboard,75.99,South
-Monitor,300,East
-Webcam,50,West
-Laptop,1500,South
+Product,Region,SalesAmount
+Laptop,North America,1200.50
+Mouse,Europe,25.00
+Keyboard,Asia,75.20
+Laptop,Europe,1500.00
 ```
 
-## Setup and Usage
+### `rates.json`
 
-To run this application, you only need a web server (even a simple local one) to serve the `index.html` and `data.csv` files.
+Expected format for `rates.json` (example, with USD as base):
 
-### Local Setup (Recommended)
-
-1.  **Save the files:**
-    *   Save the `index.html` content to `index.html`.
-    *   Save your sales data (following the format above) to `data.csv`.
-    *   Save this `README.md` content to `README.md`.
-    *   Save the `LICENSE` content to `LICENSE`.
-
-2.  **Serve files:** You can use a simple Python HTTP server:
-    ```bash
-    python3 -m http.server
-    # Or for Python 2.x
-    python -m SimpleHTTPServer
-    ```
-    Navigate to `http://localhost:8000` (or the port indicated by the server) in your web browser.
-
-    Alternatively, if you have Node.js installed, you can use `http-server`:
-    ```bash
-    npm install -g http-server
-    http-server .
-    ```
-    Then open `http://localhost:8080` (or default port) in your browser.
-
-### Direct Opening (Limited Functionality)
-
-You can also open `index.html` directly in your browser (`file:///path/to/your/project/index.html`). However, due to browser security restrictions (CORS), `fetch` requests for local files (`data.csv`) might not work. Using a local HTTP server is the recommended approach.
+```json
+{
+  "USD": 1.0,
+  "EUR": 0.85,
+  "GBP": 0.75,
+  "JPY": 110.25
+}
+```
 
 ## Technologies Used
 
-*   **HTML5:** Structure of the web page.
-*   **Tailwind CSS:** For all styling and responsive design.
-*   **JavaScript (ES6+):** For fetching, parsing, and displaying data.
+-   **HTML5**: Structure of the web page.
+-   **Tailwind CSS**: Utility-first CSS framework for styling.
+-   **JavaScript (Vanilla)**: For data fetching, processing, filtering, and dynamic updates.
+
+## Contributing
+
+Feel free to fork this repository, open issues, or submit pull requests. All contributions are welcome!
 
 ## License
 
-This project is open-source and available under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
